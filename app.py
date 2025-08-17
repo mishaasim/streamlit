@@ -3,7 +3,8 @@ from pathlib import Path
 import pandas as pd
 
 st.set_page_config(page_title="Group Project Dashboard", layout="wide")
-st.title(Case Study: Implications of Factors on Pakistan's CO2 Emissions )
+st.title(Implications of Factors on Pakistan's CO2 Emissions )
+st.caption(A Case Study by Dylan Hayes and Misha Asim)
 
 IMG_DIR = Path("figures")
 CSV_PATH = IMG_DIR / "captions.csv"
