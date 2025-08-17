@@ -1,23 +1,30 @@
 import streamlit as st
 from pathlib import Path
+import pandas as pd
 
 st.set_page_config(page_title="Group Project Dashboard", layout="wide")
-st.title("Data Visualization: Main Results of Country Specific Data and General")
+st.title("Main results (screenshots + captions)")
 
-root = Path(".")
-figdir = root / "figures"
+IMG_DIR = Path("figures")
+CSV_PATH = IMG_DIR / "captions.csv"
 
-
-
-img_paths = [p for p in figdir.glob("*") if p.suffix.lower() in {".png", ".jpg", ".jpeg", ".webp"}]
-if not img_paths:
-    st.error("No image files found in figures/. Double-check branch, folder name, and filenames.")
+# Safety checks
+if not CSV_PATH.exists():
+    st.error("Missing captions file at figures/captions.csv")
 else:
-    img_paths = sorted(img_paths, key=lambda p: p.name.lower())
+    df = pd.read_csv(CSV_PATH)
+
     cols = st.columns(2)
-    for i, p in enumerate(img_paths):
-        with cols[i % 2]:
-            st.image(str(p), caption=p.stem, use_container_width=True)
+    missing = []
+    for i, row in df.iterrows():
+        fname = str(row["filename"]).strip()
+        cap = str(row["caption"]).strip()
+        p = IMG_DIR / fname
+        if p.exists():
+            with cols[i % 2]:
+                st.image(str(p), caption=cap, use_container_width=True)
+        else:
+            missing.append(fname)
 
-
-
+    if missing:
+        st.warning("Missing files in figures/: " + ", ".join(missing))
