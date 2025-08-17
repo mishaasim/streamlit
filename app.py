@@ -3,7 +3,7 @@ from pathlib import Path
 import pandas as pd
 
 st.set_page_config(page_title="Group Project Dashboard", layout="wide")
-st.title("Main results (screenshots + captions)")
+st.title(Case Study: Implications of Factors on Pakistan's CO2 Emissions )
 
 IMG_DIR = Path("figures")
 CSV_PATH = IMG_DIR / "captions.csv"
