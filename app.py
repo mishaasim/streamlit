@@ -5,6 +5,8 @@ import pandas as pd
 st.set_page_config(page_title="Group Project Dashboard", layout="wide")
 st.title("Implications of Factors on CO2 Emissions in Pakistan")
 st.caption("A Case Study by Dylan Hayes and Misha Asim")
+import streamlit as st
+
 st.subheader("📓 Run the Jupyter Notebook")
 
 st.markdown(
@@ -15,6 +17,8 @@ st.markdown(
     [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
     https://colab.research.google.com/github/mishaasim/streamlit/blob/main/Group%20Project%20MA%26DH%20Final%20%281%29.ipynb)
     """,
+    unsafe_allow_html=True,
+)
 
 IMG_DIR = Path("figures")
 CSV_PATH = IMG_DIR / "captions.csv"
@@ -39,17 +43,3 @@ else:
 
     if missing:
         st.warning("Missing files in figures/: " + ", ".join(missing))
-import streamlit as st
-
-st.subheader("📓 Run the Jupyter Notebook")
-
-st.markdown(
-    """
-    [![Binder](https://mybinder.org/badge_logo.svg)](
-    https://mybinder.org/v2/gh/mishaasim/streamlit/main?labpath=Group%20Project%20MA%26DH%20Final%20%281%29.ipynb)
-    &nbsp;&nbsp;
-    [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
-    https://colab.research.google.com/github/mishaasim/streamlit/blob/main/Group%20Project%20MA%26DH%20Final%20%281%29.ipynb)
-    """,
-    unsafe_allow_html=True,
-)
